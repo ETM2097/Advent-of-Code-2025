@@ -61,23 +61,25 @@ for (int i = 0; i < 12; ++i) { // We iterate 12 times to pick 12 digits
 Explanation of the code above:
 ```
 line = [9, 1, 9, 4, 6, 2, 8, 7, 5, 3, 0, 9, 4, 5, 1, 1]
-1. In the first iteration (i=0), we can pick from the position 0 to position 11. The maximum is 9 at position 0. We pick it and set start to 1.
+1. In the first iteration (i=0), we can pick from the position 0 to position 3. The maximum is 9 at position 0. We pick it and set start to 1.
 - result = [9]
-2. In the second iteration (i=1), we can pick from position 1 to position 12. The maximum is 9 at position 2. We pick it and set start to 3.
+2. In the second iteration (i=1), we can pick from position 1 to position 4. The maximum is 9 at position 2. We pick it and set start to 3.
 - result = [9, 9]
-3. In the third iteration (i=2), we can pick from position 3 to position 13. The maximum is 8 at position 6. We pick it and set start to 7.
-- result = [9, 9, 8]
-4. In the fourth iteration (i=3), we can pick from position 7 to position 14. The maximum is 7 at position 7. We pick it and set start to 8.
-- result = [9, 9, 8, 7]
-5. We continue this process until we have picked 12 digits.
+3. In the third iteration (i=2), we can pick from position 3 to position 5. The maximum is 6 at position 4. We pick it and set start to 5.
+- result = [9, 9, 6]
+4. In the fourth iteration (i=3), we can pick from position 5 to position 6. The maximum is 8 at position 6. We pick it and set start to 6.
+- result = [9, 9, 6, 8]
+5. We continue this process until we have picked 12 digits (we add the rest).
 
 + Extreme example: eX = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 1, 1, 1, 9]
-1. In the first iteration (i=0), we can pick from position 0 to position 11. The maximum is 9 at position 11. We pick it and set start to 12.
-- result = [9]
-2. In the second iteration (i=1), we can pick from position 12 to position 13. The maximum is 1 at position 12. We pick it and set start to 13.
-- result = [9, 1]
-3. In the third iteration (i=2), we can pick from position 13 to position 14. The maximum is 1 at position 13. We pick it and set start to 14.
-- result = [9, 1, 1]
+1. In the first iteration (i=0), we can pick from position 0 to position 5. The maximum is 1 at position 0. We pick it and set start to 1.
+- result = [1]
+2. In the second iteration (i=1), we can pick from position 1 to position 6. The maximum is 1 at position 2. We pick it and set start to 2.
+- result = [1, 1]
+...
+...
+3. In the third iteration (i=5), we can pick from position 6 to position 11. The maximum is 9 at position 11. We pick it and set start to 12.
+- result = [1, 1, 1, 1, 1, 1, 9]
 4. We continue and check that we still get a 12 digit number at the end because of the iterations limit.
 ```
 
