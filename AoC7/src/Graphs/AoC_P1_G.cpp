@@ -50,12 +50,12 @@ int main() {
         visited.insert(currentNodeID);
 
         // We count if it is a splitter
-        if (graph.nodes[currentNodeID].cellType == '^') {
+        if (graph.nodes[currentNodeID]->cellType == '^') {
             totalSplittings++;
         }
 
         // We add its neighbors to the queue
-        for (int neighborID : graph.nodes[currentNodeID].neighbors) {
+        for (int neighborID : graph.nodes[currentNodeID]->neighbors) {
                 bfs.push(neighborID);
         }
     }

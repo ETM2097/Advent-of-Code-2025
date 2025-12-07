@@ -13,7 +13,7 @@
 using namespace std;
 
 int main() {
-    ifstream inputFile("AoC7.txt"); // We get the input from this file
+    ifstream inputFile("data/AoC7.txt"); // We get the input from this file
     string line;
     vector<string> grid; // Here we will store the grid
 

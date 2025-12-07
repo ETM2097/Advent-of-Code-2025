@@ -17,7 +17,7 @@ struct Node {
 // Now we define the Graph class that will implement methods to work with the grid
 class Graph {
     public:
-        vector<Node> nodes; // This will store all the nodes in the graph
+        vector<Node*> nodes; // This will store all the nodes in the graph
         int rows; // Number of rows in the grid
         int cols; // Number of columns in the grid
         int startNodeID; // ID of the starting node (where 'S' is located)

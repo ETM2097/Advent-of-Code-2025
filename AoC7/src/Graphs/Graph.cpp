@@ -12,10 +12,11 @@ Graph::Graph(const vector<string>& grid) {
         for (size_t col = 0; col < cols; col++) {
             // Here we implement an ID for processing the nodes easier as it will be a 1D vector instead of 2D
             int iD = getNodeID(row, col);
+            nodes[iD] = new Node();
             // Here we put the information of the node into the graph
-            nodes[iD].rows = row;
-            nodes[iD].cols = col;
-            nodes[iD].cellType = grid[row][col];
+            nodes[iD]->rows = row;
+            nodes[iD]->cols = col;
+            nodes[iD]->cellType = grid[row][col];
 
             // If we find the starting node, we store its ID
             if (grid[row][col] == 'S') {
@@ -30,19 +31,19 @@ Graph::Graph(const vector<string>& grid) {
             // We transform back to the 1D 2D index
             int currentID = getNodeID(row, col);
             // We get the type of cell for processing the neighbors
-            char cell = nodes[currentID].cellType;
+            char cell = nodes[currentID]->cellType;
             if (cell == '^') {
                 if (col - 1 >= 0) {
-                    nodes[currentID].neighbors.push_back(getNodeID(row + 1, col - 1));
+                    nodes[currentID]->neighbors.push_back(getNodeID(row + 1, col - 1));
                 }
                 if (col + 1 < cols) {
-                    nodes[currentID].neighbors.push_back(getNodeID(row + 1, col + 1));
+                    nodes[currentID]->neighbors.push_back(getNodeID(row + 1, col + 1));
                 }
             } 
             else if (cell == '.' || cell == 'S') {
                 // Empty cell or Start: it connects directly downwards, so just connects to the node below
                 if (row + 1 < rows) {
-                    nodes[currentID].neighbors.push_back(getNodeID(row + 1, col));
+                    nodes[currentID]->neighbors.push_back(getNodeID(row + 1, col));
                 }
             }
         }   
@@ -64,5 +65,5 @@ int Graph::getNumNodes() const {
 }
 
 bool Graph::isLastRow(int nodeID) const {
-    return nodes[nodeID].rows == rows - 1;
+    return nodes[nodeID]->rows == rows - 1;
 }

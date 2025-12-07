@@ -1,3 +1,4 @@
+#include "../../include/HashMap.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -8,7 +9,12 @@ using namespace std;
 
 vector<string> grid;
 int rows, cols;
-map<pair<int,int>, long long> memo; // Cache for memoization
+HashMap<int, long long> memo; // Use your custom HashMap
+
+// Convert (row, col) to a unique int key for utilizing it in our HashMap
+int getKey(int row, int col) {
+    return row * cols + col;
+}
 
 long long countPaths(int row, int col) {
     // Base case: out of bounds
@@ -18,8 +24,8 @@ long long countPaths(int row, int col) {
     if (row == rows - 1) return 1;
     
     // Check if already computed
-    pair<int,int> state = {row, col};
-    if (memo.count(state)) return memo[state];
+    int key = getKey(row, col);
+    if (memo.contains(key)) return memo.get(key);
     
     char cell = grid[row][col];
     long long result = 0;
@@ -33,10 +39,9 @@ long long countPaths(int row, int col) {
     }
     // Other characters: laser stops, result stays 0
     
-    memo[state] = result; // Store in cache
+    memo.set(key, result); // Store in cache
     return result;
 }
-
 int main() {
     ifstream inputFile("data/AoC7.txt");
     string line;
