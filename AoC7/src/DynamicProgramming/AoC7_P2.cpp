@@ -39,7 +39,7 @@ long long countPaths(int row, int col) {
     }
     // Other characters: laser stops, result stays 0
     
-    memo.set(key, result); // Store in cache
+    memo.set(key, result); // Store in memoization map
     return result;
 }
 int main() {
