@@ -66,7 +66,7 @@ int main() {
             
         }
 
-        currentRow = move(nextRow);
+        currentRow = move(nextRow); // Move to the next row. We change to the other set to avoid copying
     }
 
     cout << "Total number of splittings: " << totalSplittings << endl;

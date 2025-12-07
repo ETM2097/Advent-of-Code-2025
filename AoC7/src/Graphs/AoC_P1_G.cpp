@@ -12,26 +12,12 @@
 
 using namespace std;
 
-int main() {
-    // We use the same method in order to read the input file and store it in a grid
-    ifstream inputFile("data/AoC7.txt"); // We get the input from this file
-    string line;
-    vector<string> grid; // Here we will store the grid
-
-    // We read the input file and store it in a grid
-    while (getline(inputFile, line)) {
-        grid.push_back(line);
-    }
-    inputFile.close();
-
-    // Now, we create the graph from the grid
-    Graph graph(grid);
-
+long long bfs(const Graph& graph, int startNodeID) {
     // Now we implement the BFS to traverse the graph and count the splitters, an in-depth explanation will be in the README file
     // We create a queue for the BFS
     queue<int> bfs;
     set<int> visited; // We use a set to avoid counting splitters more than once because of multiple paths
-    int totalSplittings = 0; // This will store the total number of splitters hit
+    long long totalSplittings = 0; // This will store the total number of splitters hit
 
     // We start from the starting node
     bfs.push(graph.startNodeID);
@@ -58,6 +44,27 @@ int main() {
         for (int neighborID : graph.nodes[currentNodeID]->neighbors) {
                 bfs.push(neighborID);
         }
+        return totalSplittings;
     }
+}
+
+int main() {
+    // We use the same method in order to read the input file and store it in a grid
+    ifstream inputFile("data/AoC7.txt"); // We get the input from this file
+    string line;
+    vector<string> grid; // Here we will store the grid
+
+    // We read the input file and store it in a grid
+    while (getline(inputFile, line)) {
+        grid.push_back(line);
+    }
+    inputFile.close();
+
+    // Now, we create the graph from the grid
+    Graph graph(grid);
+
+    // Now we call the BFS from the starting node
+    long long totalSplittings = bfs(graph, graph.startNodeID);
+    
     cout << "Total splitters hit: " << totalSplittings << endl;
 }
