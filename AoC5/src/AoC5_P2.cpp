@@ -53,9 +53,7 @@ long long countUniqueIDs(std::vector<Interval>& intervals) {
 
 // Example usage for AoC5
 int main() {
-    // Tree object
-    IntervalTree tree;
-
+    
     // Vector for storing intervals
     std::vector<Interval> intervals;
 

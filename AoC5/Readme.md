@@ -240,7 +240,7 @@ So this fucntion first sorts all the intervals, stored in a vector at the main f
   2. Insert each interval into the `Interval Vector`.
   3. Now we have implemented a new method called `countOverlapsInRange`, which counts how many IDs from a given range overlap with any interval in the vector.
   
-  #### How do countOverlapsInRange() works?
+  #### How do countUniqueIDs() works?
     1. First we sort using the same method as in `buildFromIntervals()`.
     2. Then we iterate through the sorted intervals and merge any overlapping intervals into a single interval.
     3. Finally, we calculate the total number of unique IDs covered by the merged intervals.

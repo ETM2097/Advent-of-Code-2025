@@ -14,7 +14,9 @@ struct Node {
     vector<int> neighbors; // Store indices of neighboring nodes
 };
 
+
 // Now we define the Graph class that will implement methods to work with the grid
+
 class Graph {
     public:
         vector<Node*> nodes; // This will store all the nodes in the graph
