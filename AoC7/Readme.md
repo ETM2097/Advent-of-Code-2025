@@ -45,7 +45,7 @@ make clean # To clean up the build files
 - **Custom HashMap**: As last part, we decided to implement our own HasMap to optimize the graph solution. Later we used this HashMap in the dynamic programming solution as well by tweaking a bit the program.
 
 ## Conclusions
-Today's challenge gave us a great opportunity to implement and utilize the advanced structures that we have studied at class. We chose to implement a `Graphp` structure to represent the conections between the cells of the grid and a custom `HashMap` to optimize our dynamic programming solution. And we implemented various resolutions, two with just dynamic programming and two with graphs, in order to prove that one problem has not only one solution.
+Today's challenge gave us a great opportunity to implement and utilize the advanced structures that we have studied at class. We chose to implement a `Graph` structure to represent the conections between the cells of the grid and a custom `HashMap` to optimize our dynamic programming solution. And we implemented various resolutions, two with just dynamic programming and two with graphs, in order to prove that one problem has not only one solution.
 
 We are quite happy of the final result that we got on today's challenge because we got a strong example in order to show all our abilitites on data structures and algorithms.
 
