@@ -146,7 +146,7 @@ class Graph {
             // Create state for memoization
             tuple<NodeType, bool, bool> state = make_tuple(current, visited1, visited2); // make_tuple from <tuple>
             
-            // Check memo first
+            // We check memo first
             if (memo.contains(state)) {
                 return memo.get(state);
             }

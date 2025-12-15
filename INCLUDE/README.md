@@ -653,8 +653,10 @@ The algorithm only counts paths that reach the target with both `visited1` and `
 
 ## Final Notes
 
-If you ended up here, we are more than grateful. We hpe you found this documentation and this classes useful and entertaining. We worked hard in order to present something different other than the flat implementations for the Advent of Code Challenges, wich can be just IA generated or copy-pasted from internet sources.
-As the challenges were not as difficult or entertaining as we expectged (in terms of learning new concepts or algorithms) we decided to invest our time in creating this reusable code that would make us think out of the box in order to make it as general as possible and reusable for future challenges.
-We would love to hear your feedback about this code, we are sure it is not perfect, as is the first time we have implemented something as complex as this from scratch, and we want to keep improving it in future projects.
+If you’ve made it this far, thank you! We are incredibly grateful. We hope you found this documentation (and these classes) both useful and entertaining.
 
-Thank you for reading us!
+We worked hard to create something unique. rather than settling for "flat" implementations, AI-generated snippets, or copy-pasted solutions often seen in Advent of Code. Since the challenges themselves weren't as algorithmically heavy as we expected, we decided to challenge ourselves in a different way: by building a robust, reusable framework. This pushed us to think outside the box and focus on general-purpose software design.
+
+We would love to hear your feedback. We know the code isn't perfect (this is our first time implementing a system this complex from scratch) but we are eager to learn and improve for future projects.
+
+Thanks for reading!
