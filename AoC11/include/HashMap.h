@@ -25,7 +25,7 @@ struct DefaultHash {
 };
 
 // Specialization for string hashing (Day 11 of AoC 2025)
-template<> // No template parameters as we are specializing for std::string
+template<> // Allows us to specialize the template of DefaultHash for strings
 struct DefaultHash<std::string> {
     int operator()(const std::string& key, int hashSize) const {
         unsigned long long hash = 0;
@@ -57,7 +57,7 @@ struct TupleHash3 {
     }
 };
 
-// Specialization for tuple<string, bool, bool> (for path tracking in AoC11_P2) (IA generated)
+// Specialization for tuple<string, bool, bool> (for path tracking in AoC11_P2) (AI generated)
 template<>
 struct TupleHash3<std::string, bool, bool> {
     int operator()(const std::tuple<std::string, bool, bool>& key, int hashSize) const {
