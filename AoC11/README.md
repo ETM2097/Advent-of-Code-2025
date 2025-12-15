@@ -33,6 +33,11 @@ make clean # To clean up the build files
 - **Custom HashMap**: A custom hash map is used for memoization to optimize the graph traversal algorithms. This hash map supports custom hash functions for tuples and pairs.
 - **DFS with Memoization**: The solutions use DFS with memoization to avoid redundant computations and improve performance.
 
+## Alternative Solutions
+While we focused on DFS with memoization for this challenge, alternative approaches could include:
+- **Dynamic Programming**: A bottom-up dynamic programming approach could be used to count paths, we ended not implementing it as we found graph traversal was more intuitive for this problem.
+- **Breadth-First Search (BFS)**: Although less common for path counting in DAGs, BFS could be adapted for certain scenarios. We implemented BFS in our Graph class for completeness, but it was not used in this challenge.
+
 ## Conclusions
 Day 11's challenge provided an excellent opportunity to implement and utilize advanced graph algorithms and data structures. The use of DFS with memoization allowed us to solve the problem efficiently, even for large graphs. The custom `HashMap` further optimized the solution by enabling fast lookups and storage of intermediate results.
 

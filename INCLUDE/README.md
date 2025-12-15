@@ -1,7 +1,7 @@
-# Implementation of HashMap and Graph for Advent of Code 2025: Day 11
-This document describes the implementation details of the `HashMap` and `Graph`. Both classes are templated to allow for flexibility in key and value types. The implementations build upon concepts learned in previous days, with specific adaptations to meet the requirements of Day 11.
+# Implementation of HashMap and Graph for Advent of Code 2025:
+This document describes the implementation details of the `HashMap` and `Graph`. Both classes are templated to allow for flexibility in key and value types. The implementations build upon concepts learned in previous days, with specific adaptations to meet the requirements of Day 11, as it was the last day we worked on.
 
-As we tried to make them as reusable as possible, as we believe in code reusability, those classes ended up being quite bigger than expected. So we decided to approach this README as if it was a user comprehesive guide, explaining the main features of each class and the decisions we made during the implementation. Get ready for a long read!
+We tried to make our code as reusable as possible. While this made the classes a bit larger than expected, we believe it was worth it. Think of this README as a complete user guide: we’ll cover the main features and explain why we built things the way we did. Grab a coffee—this is going to be a long read!
 
 # Index
 
