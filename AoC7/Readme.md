@@ -44,6 +44,10 @@ make clean # To clean up the build files
 - **Dynamic Programming**: We have implemented dynamic programming by developing our own HashMap, first we used the map library, but after we decided to implement our own HashMap.
 - **Custom HashMap**: As last part, we decided to implement our own HasMap to optimize the graph solution. Later we used this HashMap in the dynamic programming solution as well by tweaking a bit the program.
 
+## Alternative Solutions
+We implemented two different approaches for each part of the challenge: one using dynamic programming and another using graph traversal. This allowed us to compare the efficiency and complexity of both methods.
+Another possible approach could have been to use a brute-force simulation of all possible ray paths, but this would have been inefficient for larger grids.
+
 ## Conclusions
 Today's challenge gave us a great opportunity to implement and utilize the advanced structures that we have studied at class. We chose to implement a `Graph` structure to represent the conections between the cells of the grid and a custom `HashMap` to optimize our dynamic programming solution. And we implemented various resolutions, two with just dynamic programming and two with graphs, in order to prove that one problem has not only one solution.
 
