@@ -8,9 +8,12 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <set> // Used for just processing one time each columns per row
+// #include <set> Changed approach
+#include "../../include/HashMap.h"
 
 using namespace std;
+
+// IMPORTANT, changed the first approach of set to the custom HashMap
 
 int main() {
     ifstream inputFile("data/AoC7.txt"); // We get the input from this file
@@ -37,36 +40,39 @@ int main() {
     }
 
     // Here we track which columns have lasers in the current row
-    set<int> currentRow; // Using a set to avoid duplicates
-    currentRow.insert(startCol); // Start from the position of 'S'
+    vector<int> currentRowVec;
 
-    // Here we process each row
-    for (int row = 0; row < rows && !currentRow.empty(); ++row) {
-        set<int> nextRow;
+    currentRowVec.push_back(startCol); // We start with the laser at the starting column
 
-        for (int col : currentRow) {
-            if (col < 0 || col >= cols) continue;  // Out of bounds
+    for (int row = 0; row < rows && !currentRowVec.empty(); ++row) {
+        vector<int> nextRowVec; // Here we store the next row lasers
+        HashMap<int, bool> nextSeen; // To avoid duplicates in the next row we now use our HashMap
 
+        for (int col : currentRowVec) { // We process each laser in the current row
+            if (col < 0 || col >= cols) continue;
             char cell = grid[row][col];
+
             if (cell == '^') {
-                // Count this splitter as hit
-                totalSplittings += 1;
-                // Send lasers to col-1 and col+1 in the next row
                 if (row + 1 < rows) {
-                    nextRow.insert(col - 1);
-                    nextRow.insert(col + 1);
+                    int a = col - 1, b = col + 1;
+                    if (!nextSeen.contains(a)) {  // We check if we have already seen 'a' using contains()
+                        nextSeen.set(a, true); // We mark it as seen
+                        nextRowVec.push_back(a); // We push the new laser to the next row
+                    }
+                    if (!nextSeen.contains(b)) { // Same with b
+                        nextSeen.set(b, true); 
+                        nextRowVec.push_back(b); 
+                    }
                 }
+                totalSplittings++; // we hit a splitter, then we count it
             } else if (cell == '.' || cell == 'S') {
-                // Continue downwards
                 if (row + 1 < rows) {
-                    nextRow.insert(col);
+                    if (!nextSeen.contains(col)) { nextSeen.set(col, true); nextRowVec.push_back(col); }
                 }
             }
-            // If it's any other character, the lasers stop
-            
         }
 
-        currentRow = move(nextRow); // Move to the next row. We change to the other set to avoid copying
+        currentRowVec.swap(nextRowVec); // Here we move to the next row
     }
 
     cout << "Total number of splittings: " << totalSplittings << endl;

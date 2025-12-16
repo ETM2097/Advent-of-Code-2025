@@ -9,6 +9,9 @@
 #include <utility>
 #include <functional>
 
+// IMPORTANT UPDATE 1: We now use getRef() method from HashMap to avoid unnecessary copying of vectors when getting adjacency lists, it returns
+// a const reference to the vector stored in the HashMap, improving performance. Changed in several places in the code below.
+
 using namespace std;
 
 template<typename NodeType, typename WeightType = int, typename NodeDataType = int>
@@ -37,7 +40,9 @@ class Graph {
         void removeNodeFromGraph(const NodeType& node) {
             // Remove all outgoing edges
             if (forwardAdjacents.contains(node)) {
-                vector<NodeType> neighbors = forwardAdjacents.get(node);
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(node); // We get by reference to avoid copying (new method in HashMap)
+                                                                                   // const is used to avoid modifying the original vector, (The vector in the HashMap)
+                                                                                   // as we only need to read it here.
                 for (const NodeType& neighbor : neighbors) {
                     removeEdge(node, neighbor); // Here e use removeEdge to handle outgoing edges
                 }
@@ -45,7 +50,7 @@ class Graph {
 
             // Remove all incoming edges
             if (backwardAdjacents.contains(node)) {
-                vector<NodeType> neighbors = backwardAdjacents.get(node);
+                const vector<NodeType>& neighbors = backwardAdjacents.getRef(node);
                 for (const NodeType& neighbor : neighbors) {
                     removeEdge(neighbor, node); // Now we use removeEdge to handle incoming edges
                 }
@@ -91,7 +96,7 @@ class Graph {
         void removeFromAdjacencyList(const NodeType& from, const NodeType& to) {
             // We remove 'to' from the forward adjacency list of 'from'
             if (forwardAdjacents.contains(from)) {
-                vector<NodeType> neighbors = forwardAdjacents.get(from);
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(from);
                 neighbors.erase(remove(neighbors.begin(), neighbors.end(), to), neighbors.end());
                 forwardAdjacents.set(from, neighbors);
             }
@@ -127,7 +132,7 @@ class Graph {
             // Recursively count paths through all outgoing edges
             long long totalPaths = 0;
             if (forwardAdjacents.contains(current)) {
-                vector<NodeType> neighbors = forwardAdjacents.get(current);
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(current);
                 for (const NodeType& neighbor : neighbors) {
                     totalPaths += countPathsHelper(neighbor, target, memo);
                 }
@@ -165,7 +170,7 @@ class Graph {
             // Recursively count paths through all outgoing edges
             long long totalPaths = 0;
             if (forwardAdjacents.contains(current)) { // If the fordward adjacents contains the current node
-                vector<NodeType> neighbors = forwardAdjacents.get(current); // We get its neighbors
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(current); // We get its neighbors
                 for (const NodeType& neighbor : neighbors) { // And we iterate through them
                     totalPaths += countPathsThrough2Helper(neighbor, target, node1, node2, 
                                                           newVisited1, newVisited2, memo);
@@ -192,7 +197,7 @@ class Graph {
             while (!q.empty() && !found) { // While there are nodes to process and we haven't found the end
                 NodeType current = q.front(); q.pop(); // We get the front node and remove it from the queue
                 if (!forwardAdjacents.contains(current)) continue; // If there are no neighbors we must not check this node
-                for (const NodeType& neighbor : forwardAdjacents.get(current)) { // We iterate through its neighbors
+                for (const NodeType& neighbor : forwardAdjacents.getRef(current)) { // We iterate through its neighbors
                     if (visited.contains(neighbor)) continue; // If already visited, skip
                     visited.set(neighbor, true); // We mark it as visited
                     parent.set(neighbor, current); // We set its parent for path reconstruction
@@ -237,7 +242,7 @@ class Graph {
                 result.emplace_back(currentNode, currentDist); // Now we store the result
                 // Then we explore neighbors
                 if (weightedAdjacents.contains(currentNode)) { // If there are neighbors
-                    for (const auto& [neighbor, weight] : weightedAdjacents.get(currentNode)) { // We iterate through them
+                    for (const auto& [neighbor, weight] : weightedAdjacents.getRef(currentNode)) { // We iterate through them
                         WeightType newDist = currentDist + weight; // Here we calculate the new distance with that neighbor weight
                         if (!distances.contains(neighbor) || newDist < distances.get(neighbor)) { // If the path is shorter or not calculated yet
                             distances.set(neighbor, newDist); // We update the shortest distance
@@ -268,7 +273,7 @@ class Graph {
 
         // Construction of the graph from edges and nodes (NOT WEIGHTED)
         void addNode(const NodeType& node) {
-            allNodes.insert(node);
+            if(!hasNode(node)) allNodes.insert(node);
         }
 
 
@@ -287,13 +292,16 @@ class Graph {
             removeNodeFromGraph(node);
         }
 
-        // Add edge (from, to) to the graph
+        // Add edge (from, to) to the graph. If you add an edge with nodes that do not exist, they are created without data. Use addNode beforehand if you want data
+        // or set it later with setNodeData() method.
         void addEdge(const NodeType& from, const NodeType& to) {
             if (isWeighted) {
                 throw runtime_error("Graph is weighted, use addNode with weight parameter.");
             }
             if (!hasNode(from) || !hasNode(to)) {
-                throw runtime_error("Both nodes must exist in the graph.");
+                // We create the nodes without data if they do not exist
+                addNode(from);
+                addNode(to);
             }
             addEdgeToGraph(from, to);
             if (!isDirected) {
@@ -301,13 +309,16 @@ class Graph {
             }
         }
 
-        // Adds a weighted edge to the graph (from, to, weight)
+        // Adds a weighted edge to the graph (from, to, weight). If you add an edge with nodes that do not exist, they are created without data. 
+        // Use addNode beforehand if you want data or set it later with setNodeData() method.
         void addEdge(const NodeType& from, const NodeType& to, const WeightType& weight) {
             if (!isWeighted) {
                 throw runtime_error("Graph is unweighted, cannot add weighted edges.");
             }
             if (!hasNode(from) || !hasNode(to)) {
-                throw runtime_error("Both nodes must exist in the graph.");
+                // We create the nodes without data if they do not exist
+                addNode(from);
+                addNode(to);
             }
             addEdgeToGraph(from, to, weight);
             if (!isDirected) {
@@ -403,6 +414,9 @@ class Graph {
 
         // Get in-degree of a node
         int getInDegree(const NodeType& node) const {
+            if (!hasNode(node)) {
+                throw runtime_error("Node does not exist in the graph.");
+            }
             if (inDegrees.contains(node)) {
                 return inDegrees.get(node);
             }
@@ -478,9 +492,12 @@ class Graph {
         }
 
         // Get the number of neighbors of a node (outgoing edges)
-        int getNeighborCount(const NodeType& node) const {
-            if (inDegrees.contains(node)) {
-                return inDegrees.get(node);
+        int getOutDegree(const NodeType& node) const {
+            if (!hasNode(node)) {
+                throw runtime_error("Node does not exist in the graph.");
+            }
+            if (forwardAdjacents.contains(node)) {
+                return forwardAdjacents.getRef(node).size();
             }
             return 0;
         }
@@ -508,7 +525,7 @@ class Graph {
                 throw runtime_error("Both nodes must exist in the graph.");
             }
             if (!weightedAdjacents.contains(from)) throw runtime_error("Edge does not exist to get weight.");
-            auto edges = weightedAdjacents.get(from);
+            const auto& edges = weightedAdjacents.getRef(from);
             for (const auto& e : edges) {
                 if (e.first == to) {
                     return e.second;
@@ -598,7 +615,7 @@ class Graph {
                 // Now we process the dependents of toCheck (nodes that depend on this one)
                 // We use backward adjacents because we need to update nodes that depend on toCheck
                 if (backwardAdjacents.contains(toCheck)) {
-                    for (const NodeType& dependent : backwardAdjacents.get(toCheck)) {
+                    for (const NodeType& dependent : backwardAdjacents.getRef(toCheck)) {
                         int currentDegree = Degrees.get(dependent);
                         Degrees.set(dependent, currentDegree - 1); // Decrease in-degree
                         if (Degrees.get(dependent) == 0) {

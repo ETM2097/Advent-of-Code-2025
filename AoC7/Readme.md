@@ -40,9 +40,9 @@ make clean # To clean up the build files
 ```
 
 ## Implementetion Highlights
-- **Graph Implementation**: The graph is constructed from a grid representation, where each cell can contain (S, . or ^), it implements methods for BFS and DFS algorithms.
-- **Dynamic Programming**: We have implemented dynamic programming by developing our own HashMap, first we used the map library, but after we decided to implement our own HashMap.
+- **Dynamic Programming**: We have implemented dynamic programming by developing our own HashMap, first we used the map library, but after we decided to implement our own HashMap, this was possible only in the second part of the challenge.
 - **Custom HashMap**: As last part, we decided to implement our own HasMap to optimize the graph solution. Later we used this HashMap in the dynamic programming solution as well by tweaking a bit the program.
+- **Graph Implementation**: The graph is constructed from a grid representation, where each cell can contain (S, . or ^), it implements methods for BFS and DFS algorithms.
 
 ## Alternative Solutions
 We implemented two different approaches for each part of the challenge: one using dynamic programming and another using graph traversal. This allowed us to compare the efficiency and complexity of both methods.

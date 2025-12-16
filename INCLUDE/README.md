@@ -37,7 +37,7 @@ The `HashMap` class we implemented is a templated hash map that supports generic
 
 - **Collision Resolution**: We used separate chaining with linked lists to handle collisions.
 - **Dynamic Resizing**: The hash map now dynamically resizes when the load factor exceeds a threshold.
-- **Basic Operations**: The class now supports insertion (`set`), appending to vectors (`append`), retrieval (`get`), deletion (`remove`), and checking for key existence (`contains`).
+- **Basic Operations**: The class now supports insertion (`set`), appending to vectors (`append`), retrieval (`get`), deletion (`remove`), and checking for key existence (`contains`), in the last update we added `getRef()` that permitted us to access values by const reference, improving performance by avoiding unnecessary copying.
 - **Clear Functionality**: Added a `clear` method to reset the hash map to its initial empty state.
 
 #### operator()
@@ -92,6 +92,8 @@ This implementation differs from Day 7's graph implementation in several ways, a
 - **Path Finding**: We implemented a breadth-first search (BFS) method to find the shortest path between two nodes. (Not used in Day 11, but useful for future challenges).
 - **Dijkstra's Algorithm**: We implemented Dijkstra's algorithm to find the shortest path in weighted graphs, although it was not used in Day 11.
 - **Topological Sort**: We implemented a topological sort method, which can be useful for directed acyclic graphs (DAGs). Although we did not end up using it for Day 11, we included it for completeness and potential future use cases.
+- **Error Handling**: We added error handling to ensure that operations are performed on existing nodes and edges, throwing exceptions when necessary.
+- **Performance Optimization**: We used `getRef()` method from `HashMap` to access adjacency lists by const reference, reducing unnecessary copying and improving performance. This was introduced in the last revision (17/12/2025).
 
 As you could see, we put a lot of effort into making the `Graph` class versatile and capable of handling various graph-related tasks. This design allows us to reuse the class in future challenges or problems in class without needing to reimplement basic graph functionalities. 
 This was made to show our understanding of graph theory and data structures, as well as to prepare us for more complex probblems that we may face in the future.
@@ -195,7 +197,7 @@ The code looks as follows:
         void removeNodeFromGraph(const NodeType& node) {
             // Remove all outgoing edges
             if (forwardAdjacents.contains(node)) {
-                vector<NodeType> neighbors = forwardAdjacents.get(node);
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(node);
                 for (const NodeType& neighbor : neighbors) {
                     removeEdge(node, neighbor); // Here e use removeEdge to handle outgoing edges
                 }
@@ -203,7 +205,7 @@ The code looks as follows:
 
             // Remove all incoming edges
             if (backwardAdjacents.contains(node)) {
-                vector<NodeType> neighbors = backwardAdjacents.get(node);
+                const vector<NodeType>& neighbors = backwardAdjacents.getRef(node);
                 for (const NodeType& neighbor : neighbors) {
                     removeEdge(neighbor, node); // Now we use removeEdge to handle incoming edges
                 }
@@ -460,7 +462,7 @@ The code looks as follows:
             while (!q.empty() && !found) { // While there are nodes to process and we haven't found the end:
                 NodeType current = q.front(); q.pop(); // We get the front node and remove it from the queue.
                 if (!forwardAdjacents.contains(current)) continue; // If there are no neighbors we must not check this node.
-                for (const NodeType& neighbor : forwardAdjacents.get(current)) { // We iterate through its neighbors
+                for (const NodeType& neighbor : forwardAdjacents.getRef(current)) { // We iterate through its neighbors
                     if (visited.contains(neighbor)) continue; // If already visited, skip
                     visited.set(neighbor, true); // We mark it as visited.
                     parent.set(neighbor, current); // We set its parent for path reconstruction.
@@ -522,7 +524,7 @@ This method is not used in Day 11, but as with the BFS, we decided to implement 
                 // Here if we want, we could add an early exit if we reach the end node
                 // Then we explore neighbors
                 if (weightedAdjacents.contains(currentNode)) { // If there are neighbors
-                    for (const auto& [neighbor, weight] : weightedAdjacents.get(currentNode)) { // We iterate through them
+                    for (const auto& [neighbor, weight] : weightedAdjacents.getRef(currentNode)) { // We iterate through them
                         WeightType newDist = currentDist + weight; // Here we calculate the new distance with that neighbor weight
                         if (!distances.contains(neighbor) || newDist < distances.get(neighbor)) { // If the path is shorter or not calculated yet
                             distances.set(neighbor, newDist); // We update the shortest distance
@@ -570,7 +572,7 @@ We implemented a method that counted all possible paths that existed between two
             // If we have not computed the path previously, and it is not the base case, we proceed to explore the neighbors of the current node.
             long long totalPaths = 0; // We set the total paths counter to 0, as the paths to the target from current are not computed yet.
             if (forwardAdjacents.contains(current)) { // If the current node has neighbors, we proceed to explore them
-                vector<NodeType> neighbors = forwardAdjacents.get(current); // We get the neighbors of the current node in order to iterate through them
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(current); // We get the neighbors of the current node in order to iterate through them
                 for (const NodeType& neighbor : neighbors) { // Now for each neighbor, we recursively call the method to count paths from that neighbor to the target
                     totalPaths += countPathsHelper(neighbor, target, memo); // We add the number of paths from neighbor to target to the total paths
                 }
@@ -631,7 +633,7 @@ We implemented a method that counts all possible paths from a start node to an e
             // Recursively count paths through all outgoing edges
             long long totalPaths = 0;
             if (forwardAdjacents.contains(current)) { // If the current node has outgoing edges
-                vector<NodeType> neighbors = forwardAdjacents.get(current); // We get its neighbors
+                const vector<NodeType>& neighbors = forwardAdjacents.getRef(current); // We get its neighbors
                 for (const NodeType& neighbor : neighbors) { // And we iterate through them
                     // Recursively count paths, propagating the updated visited flags
                     totalPaths += countPathsThrough2Helper(neighbor, target, node1, node2, 

@@ -29,7 +29,7 @@ int main() {
         }
     }
     file.close();
-    
+    printf("Graph constructed with %d nodes.\n", graph.getTotalNodes());
     // Here we count paths from "svr" to "out" that visit both "dac" and "fft"
     long long result = graph.countPathsThrough2("svr", "out", "dac", "fft");
 

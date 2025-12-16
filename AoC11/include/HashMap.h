@@ -180,6 +180,18 @@ class HashMap {
             throw std::runtime_error("Key not found");
         }
 
+        // UPDATE We added a function to get a const reference to the value for a key to avoid copying large structures
+        const T& getRef(const K& key) const { // We made it const so the caller cannot modify the original value
+            int hash = hashFunction(key);
+            for (const auto& pair : map[hash]) {
+                if (pair.first == key) {
+                    return pair.second;
+                }
+            }
+            throw std::runtime_error("Key not found");
+        }
+        
+
         void remove(const K& key) {
             int hash = hashFunction(key);
             auto& bucket = map[hash];
