@@ -1,4 +1,5 @@
 #include "IntervalTree.h"
+#include <algorithm>
 
 IntervalNode* IntervalTree::insert(IntervalNode* node, long long start, long long end) {
     // Base case: If the tree is empty, return a new node
@@ -14,9 +15,11 @@ IntervalNode* IntervalTree::insert(IntervalNode* node, long long start, long lon
     }
 
     // Here we update the max value of the ancestor node
-    if (node->maxRange < end) {
-        node->maxRange = end;
-    }
+    // Here we had a critical bug before, we corrected it by ensuring we consider both left and right children
+    long long m = node->range.end;
+    if (node->left)  m = std::max(m, node->left->maxRange);
+    if (node->right) m = std::max(m, node->right->maxRange);
+    node->maxRange = m;
     // Finally return the node pointer
     return node;
 }

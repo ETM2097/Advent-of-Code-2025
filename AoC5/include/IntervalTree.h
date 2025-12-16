@@ -21,7 +21,7 @@ struct IntervalNode {
     IntervalNode* right;
     long long maxRange;
 
-    IntervalNode(long long start, long long end) : range{start, end}, left(nullptr), right(nullptr) {}
+    IntervalNode(long long start, long long end) : range{start, end}, maxRange(end), left(nullptr), right(nullptr) {}
 };
 
 class IntervalTree {

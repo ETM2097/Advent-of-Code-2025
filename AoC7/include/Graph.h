@@ -19,7 +19,8 @@ struct Node {
 
 class Graph {
     public:
-        vector<Node*> nodes; // This will store all the nodes in the graph
+        // Changed the nodes vector to store Node objects directly instead of pointers
+        vector<Node> nodes; // This will store all the nodes in the graph
         int rows; // Number of rows in the grid
         int cols; // Number of columns in the grid
         int startNodeID; // ID of the starting node (where 'S' is located)

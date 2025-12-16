@@ -37,10 +37,10 @@ struct Node {
         for (size_t row = 0; row < rows; row++) {
             for (size_t col = 0; col < cols; col++) {
                 int iD = getNodeID(row, col); // getNodeID converts (row, col) to a unique ID, explained later.
-                nodes[iD] = new Node();
-                nodes[iD]->rows = row;
-                nodes[iD]->cols = col;
-                nodes[iD]->cellType = grid[row][col];
+                nodes[iD] = Node();
+                nodes[iD].rows = row;
+                nodes[iD].cols = col;
+                nodes[iD].cellType = grid[row][col];
                 if (grid[row][col] == 'S') {
                     startNodeID = iD;
                 }
@@ -55,18 +55,18 @@ struct Node {
         for (size_t row = 0; row < rows; row++) {
             for (size_t col = 0; col < cols; col++) {
                 int currentID = getNodeID(row, col);
-                char cell = nodes[currentID]->cellType;
+                char cell = nodes[currentID].cellType;
                 if (cell == '^') {
                     if (col - 1 >= 0) {
-                        nodes[currentID]->neighbors.push_back(getNodeID(row + 1, col - 1));
+                        nodes[currentID].neighbors.push_back(getNodeID(row + 1, col - 1));
                     }
                     if (col + 1 < cols) {
-                        nodes[currentID]->neighbors.push_back(getNodeID(row + 1, col + 1));
+                        nodes[currentID].neighbors.push_back(getNodeID(row + 1, col + 1));
                     }
                 } 
                 else if (cell == '.' || cell == 'S') {
                     if (row + 1 < rows) {
-                        nodes[currentID]->neighbors.push_back(getNodeID(row + 1, col));
+                        nodes[currentID].neighbors.push_back(getNodeID(row + 1, col));
                     }
                 }
             }   
@@ -96,7 +96,7 @@ struct Node {
     }
 
     bool Graph::isLastRow(int nodeID) const {
-        return nodes[nodeID]->rows == rows - 1;
+        return nodes[nodeID].rows == rows - 1;
     }
     ```
     These methods gave us more than enough functionality to work with the graph representation of the grid for solving the challenge.
