@@ -1,3 +1,6 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include "HashMap.h"
 #include <vector>
 #include <string>
@@ -627,3 +630,5 @@ class Graph {
             return sortedOrder;
         }
 };
+
+#endif // GRAPH_H
