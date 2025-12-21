@@ -3,15 +3,14 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <map>
 
 using namespace std;
 
 vector<string> grid;
 int rows, cols;
-HashMap<int, long long> memo; // Use your custom HashMap
+HashMap<int, long long> memo; // Here we use our own custom HashMap
 
-// Convert (row, col) to a unique int key for utilizing it in our HashMap
+// Now we convert (row, col) to a unique int key for utilizing it in our HashMap
 int getKey(int row, int col) {
     return row * cols + col;
 }
@@ -23,7 +22,7 @@ long long countPaths(int row, int col) {
     // Base case: reached the last row
     if (row == rows - 1) return 1;
     
-    // Check if already computed
+    // Now we check if already computed
     int key = getKey(row, col);
     if (memo.contains(key)) return memo.get(key);
     
@@ -37,9 +36,9 @@ long long countPaths(int row, int col) {
         // Continue downwards
         result = countPaths(row + 1, col);
     }
-    // Other characters: laser stops, result stays 0
+    // In case of other characters: laser stops, result stays at 0
     
-    memo.set(key, result); // Store in memoization map
+    memo.set(key, result); // Now we store in the memoization map
     return result;
 }
 int main() {

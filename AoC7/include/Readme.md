@@ -9,7 +9,7 @@ This implementation is not a full graph implementation, it is specialized for th
 - First we created a structure called `Node` that is the representation of each cell in the grid. It has the following attributes:
     - `row` and `col`: to store the position of the node in the grid.
     - `type`: to store the type of the node (S, ., ^).
-    - `neighbors`: a vector of pointers to neighboring nodes.
+    - `neighbors`: a vector of indices to neighboring nodes.
 
     The code for the Node structure is as follows:
 ```cpp
@@ -17,7 +17,7 @@ struct Node {
     int row;
     int col;
     char type;
-    vector<Node*> neighbors;
+    vector<int> neighbors;
 };
 ```
 - Then, we implemented the class `Graph` that has the following attributes:

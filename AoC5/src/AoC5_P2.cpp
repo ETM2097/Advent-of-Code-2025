@@ -4,7 +4,7 @@
 
 // The code is commented, but for a better explanation, please, read the Readme file.
 
-#include "../include/IntervalTree.h"
+#include "../../INCLUDE/Tree.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -14,23 +14,23 @@
 using namespace std;
 
 // Function to count unique IDs from a list of intervals
-long long countUniqueIDs(std::vector<Interval>& intervals) {
+long long countUniqueIDs(std::vector<Interval<long long>>& intervals) {
     if (intervals.empty()) return 0;
 
     // 1. Sort intervals by start value (same as in buildBalanced)
     std::sort(intervals.begin(), intervals.end(),
-        [](const Interval& a, const Interval& b) {
+        [](const Interval<long long>& a, const Interval<long long>& b) {
             return a.start < b.start;
         });
 
     // 2. Merge overlapping intervals, for not double counting
-    std::vector<Interval> merge;
+    std::vector<Interval<long long>> merge;
     merge.push_back(intervals[0]);
 
     // Here we iterate though sorted intervals and merge them
     for (size_t i = 1; i < intervals.size(); i++) {
-        Interval& last = merge.back();
-        const Interval& current = intervals[i];
+        Interval<long long>& last = merge.back();
+        const Interval<long long>& current = intervals[i];
 
         // Check if current overlaps or is adjacent to last
         if (current.start <= last.end + 1) {
@@ -44,7 +44,7 @@ long long countUniqueIDs(std::vector<Interval>& intervals) {
 
     // 3. Here we count total unique IDs
     long long total = 0;
-    for (const Interval& interval : merge) {
+    for (const Interval<long long>& interval : merge) {
         total += (interval.end - interval.start + 1);
     }
 
@@ -55,13 +55,13 @@ long long countUniqueIDs(std::vector<Interval>& intervals) {
 int main() {
     
     // Vector for storing intervals
-    std::vector<Interval> intervals;
+    std::vector<Interval<long long>> intervals;
 
     // Vector for storing single ID requests
     std::vector<long long> IDs;
 
     // Here we get the input file
-    std::ifstream file("texts/AoC5_2.txt");
+    std::ifstream file("texts/AoC5.txt");
     if (!file.is_open()) {
         std::cerr << "Error opening file.\n";
         return 1;

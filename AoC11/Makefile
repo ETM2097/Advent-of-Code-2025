@@ -16,4 +16,3 @@ AoC11_P2: src/AoC11_P2.cpp include/Graph.h include/HashMap.h
 # Clean build files
 clean:
 	rm -rf programs/AoC11_P1 programs/AoC11_P2
-.PHONY: all clean

@@ -2,7 +2,7 @@
 // Today consists of processing a list of boarding passes to determine fresh product IDs 
 // and checking from a list which IDs are fresh.
 
-#include "../include/IntervalTree.h"
+#include "../../INCLUDE/Tree.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -14,16 +14,16 @@ using namespace std;
 // Example usage for AoC5
 int main() {
     // Tree object
-    IntervalTree tree;
+    Tree<long long> tree;
 
     // Vector for storing intervals
-    std::vector<Interval> intervals;
+    std::vector<Interval<long long>> intervals;
 
     // Vector for storing single ID requests
     std::vector<long long> IDs;
 
     // Here we get the input file
-    std::ifstream file("../texts/AoC5.txt");
+    std::ifstream file("texts/AoC5.txt");
     std::string line;
 
     // Parse input
@@ -47,12 +47,15 @@ int main() {
 
     // Now we check which IDs are fresh
     int freshCount = 0;
+    // For each ID, we check if it's contained in any interval
     for (long long q : IDs) {
-        if (tree.contains(q)) {
+        // If the tree contains the ID in any interval, we count it as fresh
+        if (tree.intervalContains(q)) {
             freshCount++;
         }
     }
 
+    // Now we output the result
     std::cout << "Fresh products: " << freshCount << "\n";
 
     return 0;
