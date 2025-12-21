@@ -21,7 +21,7 @@ Where `S` is the starting point of the laser, `.` are empty cells, and `^` are m
 ### AoC7_P1 Implementation Highlights
 - We read the input grid from a file and store it in a 2D vector of strings.
 - We use a `vector<int>` named `currentRowVec` to track which columns have active lasers in the current row.
-- We use a `HashMap<int, bool>` named `nextSeen` to deduplicate columns for the next row before adding them to `nextRowVec`.
+- We use a `HashMap<int, bool>` named `nextSeen` to deduplicate columns for the next row before adding them to `nextRowVec` [info about the HashMap implementation here](../../include/Readme.md#hashmaph).
 - We iterate through the grid row by row, processing each active column:
   - If we hit a splitter (`^`), we increment the counter and add two new columns (left and right) to the next row.
   - If we hit an empty cell (`.`) or the start (`S`), we continue downwards to the same column in the next row.
