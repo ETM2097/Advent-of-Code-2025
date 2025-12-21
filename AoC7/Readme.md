@@ -43,6 +43,16 @@ make clean # To clean up the build files
 - **Dynamic Programming**: We have implemented dynamic programming by developing our own HashMap, first we used the map library, but after we decided to implement our own HashMap, this was possible only in the second part of the challenge.
 - **Custom HashMap**: As last part, we decided to implement our own HasMap to optimize the graph solution. Later we used this HashMap in the dynamic programming solution as well by tweaking a bit the program.
 - **Graph Implementation**: The graph is constructed from a grid representation, where each cell can contain (S, . or ^), it implements methods for BFS and DFS algorithms.
+- **Time Complexity Considerations**: Both dynamic programming and graph traversal approaches were designed to ensure efficient performance. The dynamic programming solution leverages memoization to avoid redundant calculations, while the graph-based solution utilizes BFS/DFS to explore paths efficiently. The dynamic programming approach has a time complexity of O(n*m) where n and m are the dimensions of the grid, while the graph traversal approach also operates within O(n*m) due to the need to explore each cell in the grid. In the end we opted to choose the dynamic programming solution with our custom HashMap as the best one, because it was faster in practice due to reduced overhead from graph traversal. Here is a quick summary:
+
+| Aspect | Dynamic Programming | Graph |
+|--------|---------------------|-------|
+| **Part 1** | Iterative simulation with sets | BFS traversal |
+| **Part 2** | Recursive DP with memoization | DFS with memoization |
+| **Code Complexity** | Simpler, fewer abstractions | More structured, reusable graph class |
+| **Memory Usage** | Lower (direct grid access) | Higher (explicit graph structure) |
+| **Speed to Implement** | Faster (no data structure setup) | Slower (graph construction required) |
+| **Best Use Case** | Competitive programming | Reusable library, complex graph problems |
 
 ## Alternative Solutions
 We implemented two different approaches for each part of the challenge: one using dynamic programming and another using graph traversal. This allowed us to compare the efficiency and complexity of both methods.

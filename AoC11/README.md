@@ -5,7 +5,7 @@ This repository contains the implementation of solutions for Day 11 of Advent of
 
 Today's challenge involves analyzing a directed acyclic graph (DAG) to count paths between nodes under specific conditions. The problem is solved using Depth-First Search (DFS) with memoization for efficiency.
 
-This follows a similar approach to Day 7, but here we implemented a more advanced graph structure and improved our custom hash map.
+This follows a similar approach to the alternative method that we developed on Day 7, but here we implemented a way more advanced graph structure and improved our custom hash map.
 
 The description of each part of the implementation is in the corresponding folders.
 
@@ -37,6 +37,7 @@ make clean # To clean up the build files
 While we focused on DFS with memoization for this challenge, alternative approaches could include:
 - **Dynamic Programming**: A bottom-up dynamic programming approach could be used to count paths, we ended not implementing it as we found graph traversal was more intuitive for this problem.
 - **Breadth-First Search (BFS)**: Although less common for path counting in DAGs, BFS could be adapted for certain scenarios. We implemented BFS in our Graph class for completeness, but it was not used in this challenge.
+- **Time Complexity Considerations**: The chosen DFS with memoization approach ensures that each node is processed only once, leading to a time complexity of `O(V + E)`, where V is the number of vertices and E is the number of edges in the graph. Compared with the dynamic programming approach, it could have had similar complexity but with potentially higher constant factors due to table lookups and having to compute all subproblems.
 
 ## Conclusions
 Day 11's challenge provided an excellent opportunity to implement and utilize advanced graph algorithms and data structures. The use of DFS with memoization allowed us to solve the problem efficiently, even for large graphs. The custom `HashMap` further optimized the solution by enabling fast lookups and storage of intermediate results.

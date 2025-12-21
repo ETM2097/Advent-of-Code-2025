@@ -143,18 +143,3 @@ long long countPaths(int row, int col) {
 ```
 
 By implementing recursive DP with memoization, we efficiently counted all unique paths the laser could take to reach the last row, even with trillions of possible paths. The time complexity is O(rows × cols) since each cell is computed at most once and stored in the memo table.
-
-## Comparison: DP vs Graph Approach
-
-Both folders solve the same problem but with different paradigms:
-
-| Aspect | Dynamic Programming | Graph |
-|--------|---------------------|-------|
-| **Part 1** | Iterative simulation with sets | BFS traversal |
-| **Part 2** | Recursive DP with memoization | DFS with memoization |
-| **Code Complexity** | Simpler, fewer abstractions | More structured, reusable graph class |
-| **Memory Usage** | Lower (direct grid access) | Higher (explicit graph structure) |
-| **Speed to Implement** | Faster (no data structure setup) | Slower (graph construction required) |
-| **Best Use Case** | Competitive programming | Reusable library, complex graph problems |
-
-**Verdict:** For this specific problem, the DP approach is more efficient and faster to implement. The Graph approach demonstrates understanding of graph modeling but adds unnecessary overhead for this grid-based simulation.
