@@ -14,9 +14,11 @@ The description of each part of the implementation is in the corresponding folde
 - `include/`: Contains header files for the project.
     - `Graph.h`: Implementation of the graph data structure and algorithms.
     - `HashMap.h`: Custom hash map implementation used for memoization.
+    - `Readme.md`: Documentation for the included data structures (Please read [this readme](../INCLUDE/README.md) for a more actualized version).
 - `src/`: Contains the source code files.
     - `AoC11_P1.cpp`: Solution for Part 1 of the challenge.
     - `AoC11_P2.cpp`: Solution for Part 2 of the challenge.
+    - `Readme.md`: This file, containing implementation details and explanations.
 
 ## Building and Running
 To build and run the project, we have implemented a Makefile. You can use the following commands:

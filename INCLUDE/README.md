@@ -3,6 +3,8 @@ This document describes the implementation details of the `HashMap` and `Graph`.
 
 We tried to make our code as reusable as possible. While this made the classes a bit larger than expected, we believe it was worth it. Think of this README as a complete user guide: we’ll cover the main features and explain why we built things the way we did. Grab a coffee—this is going to be a long read!
 
+**Actualization:** We indexed here the Tree implementation as well (summarized), as it is part of the reusable code that we developed during the challenge. It is after the Graph implementation.
+
 # Index
 
 As the document is quite long, here is an index to help you navigate through the different sections so you can check easily the parts you are more interested in:
@@ -1021,7 +1023,7 @@ bool empty() const {
 
 If you’ve made it this far, thank you! We are incredibly grateful. We hope you found this documentation (and these classes) both useful and entertaining.
 
-We worked hard to create something unique. rather than settling for "flat" implementations, AI-generated snippets, or copy-pasted solutions often seen in Advent of Code. Since the challenges themselves weren't as algorithmically heavy as we expected, we decided to challenge ourselves in a different way: by building a robust, reusable framework. This pushed us to think outside the box and focus on general-purpose software design.
+We worked hard to create something unique. Rather than settling for "flat" implementations, AI-generated snippets, or copy-pasted solutions often seen in Advent of Code. Since the challenges themselves weren't as algorithmically heavy as we expected, we decided to challenge ourselves in a different way: by building a robust, reusable framework. This pushed us to think outside the box and focus on general-purpose software design.
 
 We would love to hear your feedback. We know the code isn't perfect (this is our first time implementing a system this complex from scratch) but we are eager to learn and improve for future projects.
 

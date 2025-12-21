@@ -8,10 +8,10 @@ We wanted to make this repository as reusable as possible, so we invested a lot 
 
 ## Folder structure of each day
 Each day folder contains the following structure:
+- `data/`: Contains the input data files used for testing the implementation.
+- `include/`: Contains any additional headers or libraries used in the implementation.
 - `src/` : Contains the source code of the implementation, with a subfolder for each approach used (if more than one).
 - `Readme.md` : Contains the explanation of the implementation, the data structures and algorithms used, and any other relevant information about the day. (Days 7 and 11 have subfolders with their own README files for each approach used and the root README explains the overall approach).
-- `include/`: Contains any additional headers or libraries used in the implementation.
-- `data/`: Contains the input data files used for testing the implementation.
 
 In the next section we will highlight the days that we consider more relevant in terms of data structures and algorithms used. But we will encourage you to check the `root Readme.md` of each day for more details about the implementation and the approach used, as we discuss time complexities and comparissons. Please, check the `Readme.md`of each folder as well as there is extra information about the implementation that you may find interesting or helpful.
 
@@ -20,7 +20,7 @@ In the next section we will highlight the days that we consider more relevant in
  We had a lot of fun developing the code for the challenges, but the main motivation that made us decided to present the following days, was that these ones were the ones that made us really develop our skills and knowledge about data structures and algorithms. We believe that these days showcase our ability to implement and utilize advanced data structures and algorithms to solve complex problems efficiently.
  The days that we consider more relevant for this purpose are:
 
-- [AoC5](AoC5) : Where whe implemented a `Tree` class and used it in order to resolve the challenge, we also chose to use `Divide and Conquer` in order to re-balance the tree. We would like to to check [this implementation](AoC5/src/AoC5_P1.cpp) for the tree usage example. Also, please check the [README](AoC5/Readme.md) of that day for more details about the implementation to check solution to the problem, and also [the balancing algorithm](AoC5/Readme.md#buildbalanced) to check the divide and conquer technique.
+- [AoC5](AoC5) : Where whe implemented a `Tree` class and used it in order to resolve the challenge, we also chose to use `Divide and Conquer` in order to re-balance the tree. We would like to to check [this implementation](AoC5/src/AoC5_P1.cpp) for the tree usage example. Also, please check the [README](AoC5/src/Readme.md) of that day for more details about the implementation to check solution to the problem, and also [the balancing algorithm](AoC5/Readme.md#buildbalanced) to check the divide and conquer technique.
 
 - [AoC7](AoC7) : Where we implemented a `HashMap` in order to check duplicity of element efficiently ([check the implementation](AoC7/src/DynamicProgramming/AoC7_P1.cpp), and also you can check [it's description](AoC7/src/DynamicProgramming/Readme.md#AoC_P1.cpp)), and used `Dynamic Programming` in order to solve the second part of this chalenge [implementation here](AoC7/src/DynamicProgramming/AoC7_P2.cpp), as it proved to be the most efficient and straightforward way to solve it. Please check [this README](AoC7/src/DynamicProgramming/Readme.md#AoC7_P2.cpp) for more details about the DP with memoization implementation.
 
