@@ -59,9 +59,9 @@ We implemented two different approaches for each part of the challenge: one usin
 Another possible approach could have been to use a brute-force simulation of all possible ray paths, but this would have been inefficient for larger grids.
 
 ## Conclusions
-Today's challenge gave us a great opportunity to implement and utilize the advanced structures that we have studied at class. We chose to implement a `Graph` structure to represent the conections between the cells of the grid and a custom `HashMap` to optimize our dynamic programming solution. And we implemented various resolutions, two with just dynamic programming and two with graphs, in order to prove that one problem has not only one solution.
+Today's challenge gave us a great opportunity to implement and utilize the advanced structures that we have studied in class. We chose to present the dynamic programming solution as it proved to be the most efficient and practical for this challenge. By leveraging our custom `HashMap`, we were able to optimize the solution significantly, showcasing our ability to combine theoretical knowledge with practical implementation. This solution highlights the power of dynamic programming in solving complex grid-based problems efficiently.
 
-We are quite happy of the final result that we got on today's challenge because we got a strong example in order to show all our abilitites on data structures and algorithms.
+Additionally, we also explored graph-based solutions, which provided valuable insights into alternative approaches. While not as efficient for this specific challenge, the graph implementations allowed us to deepen our understanding of BFS and DFS algorithms and their applications in grid traversal problems. This learning will undoubtedly be beneficial for tackling future challenges involving complex graph structures (Day 11).
 
 ## Authors
 - Enric Talens (Group Leader, Implementer and Documentation Writer)
