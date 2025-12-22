@@ -32,7 +32,13 @@ make clean # To clean up the build files
 
 ## Conclusions
 
-Today was a very interesting day, at least the first part. We learned how to implement a `Tree`, which can use a variant known as an interval tree, because its data type is different from a simple element. We also learned how to balance a binary search tree using an ordered array and recursion, which was quite fun to implement. In the second part, we didn't learn anything new, but we implemented a very efficient algorithm for counting unique IDs in ranges by merging intervals.
+Today was a very interesting day, especially during the first part. We successfully implemented a versatile `Tree` structure that combines the functionality of a Binary Search Tree and an Interval Tree using `std::variant`. This allowed us to handle both simple elements and intervals efficiently. Additionally, we learned how to balance a binary search tree using an ordered array and recursion. This also gave us the opportunity to learn and apply the divide-and-conquer paradigm, improving our understanding of efficient algorithm design.
+
+The balancing method significantly improved the performance of our tree operations, reducing the average-case time complexity to `O(log n)`. This optimization ensured that our solution was not only correct but also efficient, meeting the requirements of the challenge and requirements for qualification.
+
+For the second part, we learned nothing new, we designed a straightforward solution that leveraged our existing tree implementation to count the total number of IDs within the specified ranges. Quite simple but effective.
+
+Overall, the day provided valuable insights into advanced tree implementations, balancing techniques, and their applications in solving problems.
 
 ## Authors
 - Enric Talens (Group Leader, Implementer and Documentation Writer)
