@@ -30,7 +30,7 @@ As the document is quite long, here is an index to help you navigate through the
 - [Final Notes](#final-notes)
 
 ## HashMap Implementation
-The `HashMap` class we implemented is a templated hash map that supports generic key-value pairs. We decided to use different collision resolution using separate chaining with linked lists. But this is the same as in Day 7. We added new functionalities to the HashMap to support our needs in Day 11 taht will be described below.
+The `HashMap` class we implemented is a templated hash map that supports generic key-value pairs. We decided to use different collision resolution using separate chaining with linked lists. But this is the same as in Day 7 ([you can find it's original readme here for comparison](../AoC7/include/Readme.md#hashmaph)). We added new functionalities to the HashMap to support our needs in Day 11 taht will be described below.
 
 ### Key Features
 - **Templated Design**: The `HashMap` class is templated to allow for any data type as key and value (Updated on AoC7 as well).
