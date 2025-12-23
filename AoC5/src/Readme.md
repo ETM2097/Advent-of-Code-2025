@@ -18,17 +18,17 @@
 
 ```cpp
     // Function to count unique IDs from a list of intervals
-    long long countUniqueIDs(std::vector<Interval<long long>>& intervals) {
+    long long countUniqueIDs(vector<Interval<long long>>& intervals) {
         if (intervals.empty()) return 0;
 
         // 1. Sort intervals by start value (same as in buildBalanced)
-        std::sort(intervals.begin(), intervals.end(),
+        sort(intervals.begin(), intervals.end(),
             [](const Interval<long long>& a, const Interval<long long>& b) {
                 return a.start < b.start;
             });
 
         // 2. Merge overlapping intervals, for not double counting
-        std::vector<Interval<long long>> merge;
+        vector<Interval<long long>> merge;
         merge.push_back(intervals[0]);
 
         // Here we iterate though sorted intervals and merge them
@@ -39,7 +39,7 @@
             // Check if current overlaps or is adjacent to last
             if (current.start <= last.end + 1) {
                 // Merge: extend the end if needed
-                last.end = std::max(last.end, current.end);
+                last.end = max(last.end, current.end);
             } else {
                 // No overlap: add as new interval
                 merge.push_back(current);

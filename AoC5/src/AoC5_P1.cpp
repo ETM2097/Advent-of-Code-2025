@@ -17,28 +17,28 @@ int main() {
     Tree<long long> tree;
 
     // Vector for storing intervals
-    std::vector<Interval<long long>> intervals;
+    vector<Interval<long long>> intervals;
 
     // Vector for storing single ID requests
-    std::vector<long long> IDs;
+    vector<long long> IDs;
 
     // Here we get the input file
-    std::ifstream file("texts/AoC5.txt");
-    std::string line;
+    ifstream file("texts/AoC5.txt");
+    string line;
 
     // Parse input
-    while (std::getline(file, line)) {
+    while (getline(file, line)) {
         if (line.empty()) continue;
 
         size_t endFirstId = line.find('-');
         // We check if it's a range or a single number
-        if  (endFirstId != std::string::npos && endFirstId > 0) {
-            long long start = std::stoll(line.substr(0, endFirstId));
-            long long end = std::stoll(line.substr (endFirstId + 1));
+        if  (endFirstId != string::npos && endFirstId > 0) {
+            long long start = stoll(line.substr(0, endFirstId));
+            long long end = stoll(line.substr (endFirstId + 1));
             intervals.push_back({start, end});
         } else {
             // Single number query
-         IDs.push_back(std::stoll(line));
+         IDs.push_back(stoll(line));
         }
     }
 
@@ -56,7 +56,7 @@ int main() {
     }
 
     // Now we output the result
-    std::cout << "Fresh products: " << freshCount << "\n";
+    cout << "Fresh products: " << freshCount << "\n";
 
     return 0;
 }

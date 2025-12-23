@@ -110,7 +110,7 @@ The structure of the HashMap is quite simple, and we chose to implement it using
 ### HashMap's Implementation Highlights
 
 We defined two private attributes:
-- `map`: A vector of `list` to store the key-value pairs. We used `list` from the C++ Standard Library for efficient insertion and deletion operations as we previously developed our own linked list implementation in previous challenges.
+- `map`: A vector of `list` to store the key-value pairs. We used `list` from the C++ Standard Library for efficient insertion and deletion operations as we previously developed our own linked list implementation in previous challenges [you can check the implementation here even if it is not presented for qualification](../data/Readme.md).
 - `hashSize`: A static constant defining the number of buckets in the HashMap.
 
 Then we defined a private method for generating hash values:
@@ -164,3 +164,5 @@ These are the implementations of these methods:
 ```
 
 Those are all the methods that we needed for this challenge, but we can always expand the functionality of the HashMap in the future if needed. And we hope to find another challenge where we can expand this code further.
+
+**23/12:** I come the future and I can confirm that we did expand this HashMap implementation in Day 11 of the challenge, where we added more functionalities and improved the hashing method. Please check INCLUDE's [README](../../INCLUDE/README.md#hashmap-implementation) for more details about the improvements made to this HashMap implementation.
